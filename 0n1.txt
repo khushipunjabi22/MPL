@@ -1,0 +1,27 @@
+DATA_SEG SEGMENT
+num db 54h    
+DATA_SEG ENDS      
+
+CODE_SEG SEGMENT
+	ASSUME CS:CODE_SEG, DS:DATA_SEG
+START:
+mov ax, DATA_SEG    
+mov ds, ax       
+
+mov al, num      
+
+mov bl, 00h      
+mov dl, 00h      
+mov cx, 08h      
+up:             
+rol al,01h      
+jc one          
+inc bl          
+jmp nxt         
+one:            
+inc dl          
+nxt:            
+loop up         
+
+int 03h         
+end             

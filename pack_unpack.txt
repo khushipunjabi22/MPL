@@ -1,0 +1,24 @@
+DATA SEGMENT
+  NUM DW 0098H
+DATA ENDS
+
+CODE SEGMENT
+        ASSUME CS: CODE, DS: DATA
+
+START:
+        MOV AX, DATA
+        MOV DS, AX
+
+        MOV AX, NUM
+        MOV BH, AL
+        AND BH, 0F0H
+	MOV CL, 04H
+        RCR BH, CL
+
+        MOV BL, AL
+        AND BL, 0FH
+
+        MOV AH, 4CH
+        INT 21H
+CODE ENDS
+END START

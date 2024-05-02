@@ -1,0 +1,26 @@
+DATA SEGMENT
+  NUM1 DB 4    
+  NUM2 DB 7    
+  RESULT DB ?  
+DATA ENDS
+
+CODE SEGMENT
+        ASSUME CS: CODE, DS: DATA
+
+START:
+        MOV AX, DATA   
+        MOV DS, AX     
+
+        MOV AL, NUM1
+        mov cl, 04h   
+        ROL AL, CL      
+
+        MOV AH, NUM2   
+        AND AH, 0FH    
+
+        OR AL, AH      
+        MOV RESULT, AL 
+
+        
+CODE ENDS
+END START
